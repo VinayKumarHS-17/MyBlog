@@ -1,0 +1,14 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+    <div>
+        <h1>Update Article</h1>
+        
+        {% for i in update %}
+            {{i.title}}
+        {% endfor %}
+            
+    </div>
+{% endblock content %}
+    

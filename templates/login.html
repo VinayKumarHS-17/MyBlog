@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    
+    {% block content %}
+
+        <div class="container mt-3 w-50">
+            <div class="card shadow p-4">
+                <h3 class="fw-bold text-center">Login</h3>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label">Password</label>
+                        <input type="password" name="pw1" class="form-control" required>
+                    </div>
+                
+                    <div class="text-center ">
+                        <input type="submit" value="Login" class="btn btn-outline-success fw-bold">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            Don't Have an account
+                        </label> 
+                        <a href="{% url 'signup' %}" class="text-decoration-none fw-bold fs-6">
+                            Signup
+                        </a>
+                    </div>
+                
+                </form>
+            </div>
+        </div>
+    {% endblock content %}
+        
+</body>
+</html>

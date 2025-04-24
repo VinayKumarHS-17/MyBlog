@@ -1,0 +1,43 @@
+{% extends 'home.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    {% block content %}
+    
+    
+    {% if list_spe_cat %}
+        <div class="container text-center w-50">
+                {% for i in list_spe_cat %}
+                    <div class="card shadow d-flex justify-content-center align-items-center flex-column m-4">
+                        <h2 class="text-primary fw-bold m-3">{{ i.title }}</h2>
+                        <h4 class="m-1 mb-4">{{i.content | truncatewords:10}}</h4>
+                    </div> 
+                {% endfor %}
+            
+            <div class="d-flex justify-content-center align-items-center m-3">
+                <a href="{% url 'category_list_view' %}" class="btn btn-dark w-50 fw-bold">Back</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="d-flex justify-content-center align-items-center flex-column m-3">
+            <p class="nothing fw-bold fs-2 text-center">No articles found related to this category</p> 
+            <div class="w-50 text-center">
+                <a href="{% url 'category_list_view' %}" class="btn btn-dark fw-bold w-50">Back</a>
+            </div>
+        </div>
+    {% endif %}
+        
+        
+    
+
+    {% endblock content %}
+
+</body>
+</html>

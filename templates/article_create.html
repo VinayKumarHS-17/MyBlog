@@ -1,0 +1,52 @@
+
+{% extends 'home.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/Myblog.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+<body>
+    {% block content %}
+    <h3 class="text-center fw-bold fs-2 m-4">Create Article</h3>
+    <div class="container w-50 mb-3">
+        <div class="card shadow p-4">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="" class="form-label">Title</label>
+                    <input type="text" name="title" id="title" value="{{val.title}}" placeholder="Enter title" class="form-control" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="">Content</label>
+                    <textarea name="content" id="content" rows="2"  placeholder="Enter content" class="form-control" required>{{val.content}}</textarea>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="">Author</label>
+                    <input type="text" name="author" id="author" value="{{val.author}}" placeholder="Enter author" class="form-control" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="">Category</label>
+                    <input type="text" name="category" id="category" value="{{val.category}}" placeholder="Enter category" class="form-control" required>
+                </div>
+    
+                <div class="text-center">
+                    <input type="submit" value="Submit" class="btn btn-outline-primary fw-bold fs-5">
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    {% endblock content %}
+</body>
+</html>
+    

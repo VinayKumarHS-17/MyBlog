@@ -1,0 +1,23 @@
+- Set up authentication (signup,login,logout).
+- create models given to you (Profile, Category, Article, Comment, Like).
+- Create user friendly templates and forms for adding/editing and displaying all the components
+- Use @login_user and request.user to restrict user.
+- Implement comments and like system
+- filter posts by category.
+- complete all the functionalities and models given.
+- create urls for each.
+
+
+# briefing on model schema 
+- Profile: will be One-to-one relationship with User model, along with fields profile_pic, bio
+- Category: will have only the different category names (created by admin).
+- Article: it will have title, content, author - foreign key relationship with User model, category - FK with Category model, and created_at -> DateTimeField(auto_now_add=True)
+- Comment: post - FK with Article model, user - FK with User model (this will store which user has added the comment), text - the comment message/content, created_at -> DateTimeField(auto_now_add=True) when the comment was created.
+- Like: post - one-to-one with Article and count - integer to store only the count of likes..
+
+
+# Additional
+- implement dislike functionality
+- Allow users to create their own categories.
+- Allow users to follow each other and see posts from followed users.
+- Add Pagination (limit posts per page) (optional)

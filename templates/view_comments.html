@@ -1,0 +1,36 @@
+{% extends 'home.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <h2 class="fw-medium text-center mb-3">Commented for: <b class="text-danger">{{article.title}}</b></h2>
+        <div class="container text-center d-flex justify-content-center align-items-center flex-column">
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="card shadow p-3 w-50 m-3">
+                        <strong class="fw-bold fs-2 text-primary m-3">{{comment.user.username}}</strong>
+                        <p>Comment: <span class="fw-medium fs-4">{{comment.text}}</span></p>
+                        <div class="d-flex justify-content-around">
+                            <a href="{% url 'delete_comment_view' comment.id %} " class="btn btn-danger w-50 m-3">Delete</a>
+                            <a href="{% url 'article_list_views' %}" class="btn btn-dark w-50 m-3">Back</a>
+                        </div>
+                    </div>
+                {% endfor %} 
+            {% else %}
+                <p class="nothing container w-50 fw-bold fs-1">No comments yet</p>
+                <div>
+                    <a href="{% url 'article_list_views' %}" class="btn btn-dark w-100 m-3">Back</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endblock content %}
+    
+</body>
+</html>

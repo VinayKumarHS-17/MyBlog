@@ -1,0 +1,45 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/Myblog.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+<body>
+    {% block content %}
+    <h1 class="text-center m-3">Welcome to your Profile</h1>
+    <div class="container w-50">
+        <div class="card shadow p-4">
+            <h4 class="text-center fw-bold fs-1">{{profile_info.user}}</h4>
+            <p class="text-muted text-center fw-medium fs-5">{{profile_info.bio}}</p>
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                {% if profile_info.profile_pic %}
+                <img src="{{ profile_info.profile_pic.url }}" alt="Profile Picture" style="width: 150px; height: 150px; border-radius: 50%;">
+                {% else %}
+                    <img src="/media/profile_pics/image.png" alt="Profile" style="width: 150px; height: 150px; border-radius: 50%;">
+                {% endif %}
+            </div>
+            
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <a href="{% url 'edit_profile' profile_info.id %}" class="btn btn-primary text-center m-4 w-50">Edit</a>
+            </div>
+        </div>
+    </div>
+        
+    <div class="container w-75">
+        <div class="profile m-4 text-center">
+            <a href="{% url 'delete_profile' profile_info.id %}" class="text-decoration-none btn btn-outline-danger fw-bold">Delete Profile</a>
+            <a href="{% url 'logout' %}" class="text-decoration-none btn btn-danger fw-bold">Logout</a>
+            <a href="{% url 'home' %}" class="text-decoration-none btn btn-dark fw-bold">Back</a>
+        </div>
+    </div>
+    {% endblock content %}
+    
+</body>
+</html>

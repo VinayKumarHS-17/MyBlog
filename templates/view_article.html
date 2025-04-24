@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+        <div class="container text-center w-50">
+            <div class="card shadow p-4">
+                <p class="fw-bold text-primary fs-1">{{article_view.title}}</>
+                <p>Category: <span class="fw-medium fs-4">{{article_view.category}}</span></p>
+                <p>Author: <span class="fw-medium fs-5">{{article_view.author}}</span></p>
+                <p class="m-3 fs-5">{{article_view.content}}</>
+                <p class="fs-5 fw-bold">{{article_view.created_at}}</p>
+                <div>
+                    <a href="{% url 'article_list_views' %}" class="btn btn-dark w-50">Back</a>
+                </div>
+            </div>
+        </div>
+        
+    {% endblock content %}
+</body>
+</html>
+    
