@@ -10,6 +10,33 @@
 </head>
 <body>
     {% block content %}
+
+
+    {% if messages %}
+    {% for i in messages %}
+        <div class="d-flex justify-content-center align-items-center">
+            {% if 'success' in i.tags %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ i }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% elif 'error' in i.tags or 'danger' in i.tags %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ i }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% else %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    {{ i }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+
+
     <h2 class="fw-medium text-center mb-3">Commented for: <b class="text-danger">{{article.title}}</b></h2>
         <div class="container text-center d-flex justify-content-center align-items-center flex-column">
             {% if comments %}

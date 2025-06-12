@@ -1,5 +1,8 @@
+
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib import messages
 from articles.models import Article
+from user_profile.models import Profile
 from .models import Comment,Like
 # Create your views here.
 
@@ -25,9 +28,14 @@ def view_comments(request,id):
 
 # allow only logged in user to delete only their own comment
 def delete_comment_view(request, id):
-    comment=get_object_or_404(Comment,id=id)
-    comment.delete()
-    return redirect("article_list_views")
+    if request.user.is_authenticated:
+        if request.user.username==Profile.user:
+            comment=get_object_or_404(Comment,id=id)
+            comment.delete()
+            return render(request,"view_comments.html")
+        else:
+            messages.error(request,"You don't have permission to delete this comment")
+    return render(request,'article_list.html')
 
 
 # ------------ LIKES ------------ #
